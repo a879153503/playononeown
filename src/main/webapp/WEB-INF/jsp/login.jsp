@@ -32,7 +32,7 @@
 <body class="login-bg">
 
 <div class="login layui-anim layui-anim-up">
-    <div class="message">Dream start平台</div>
+    <div class="message">Dream start</div>
     <div id="darkbannerwrap"></div>
 
     <form method="post" name="actionForm" id="actionForm" class="layui-form" action="${pageContext.request.contextPath }/user/login">
