@@ -22,6 +22,8 @@ public class LoginController {
 
         User user = userService.login(username,password);
 
+        request.setAttribute("user",user);
+
         if (user==null){
             request.setAttribute("error","用户名或者密码不正确");
             return"login";

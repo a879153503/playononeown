@@ -5,7 +5,7 @@
 <mapper namespace="com.qiao.example.dao.UserDao">
 
     <select id="getLoginUser" resultType="User">
- 		SELECT * FROM login u WHERE u.userCode=#{userCode}
+ 		SELECT * FROM login u WHERE u.user_code=#{userCode}
  	</select>
 
 </mapper>

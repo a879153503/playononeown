@@ -14,11 +14,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="stylesheet" href="resources/css/font.css">
-    <link rel="stylesheet" href="resources/css/xadmin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/font.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/xadmin.css">
     <!-- <link rel="stylesheet" href="./css/theme5.css"> -->
-    <script src="resources/lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="resources/js/xadmin.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/xadmin.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -62,7 +62,7 @@
     </ul>
     <ul class="layui-nav right" lay-filter="">
         <li class="layui-nav-item">
-            <a href="javascript:;">admin</a>
+            <a href="javascript:;">111</a>
             <dl class="layui-nav-child">
                 <!-- 二级菜单 -->
                 <dd>
@@ -74,7 +74,8 @@
             </dl>
         </li>
         <li class="layui-nav-item to-index">
-            <a href="/">前台首页</a></li>
+            <a href="/">前台首页</a>
+        </li>
     </ul>
 </div>
 <!-- 顶部结束 -->
@@ -352,7 +353,7 @@
         </div>
         <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-                <iframe src='welcome1.html' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                <iframe src='${pageContext.request.contextPath }/index/welcome' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
             </div>
         </div>
         <div id="tab_show"></div>
