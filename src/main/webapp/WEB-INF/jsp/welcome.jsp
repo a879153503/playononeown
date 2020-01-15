@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/font.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/xadmin.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath }/resources/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/xadmin.js"></script>
     <!--[if lt IE 9]>
@@ -69,10 +70,10 @@
 <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
 <script type="text/javascript">
     // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('main1'));
+    var myChart1 = echarts.init(document.getElementById('main1'));
 
     // 指定图表的配置项和数据
-    var option = {
+    var option1 = {
         grid: {
             top: '5%',
             right: '1%',
@@ -88,25 +89,57 @@
             data: ['周一','周二','周三','周四','周五','周六','周日']
         },
         yAxis: {
-            type: 'value'
-        },
-        series: [{
-            name:'用户量',
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
-            type: 'line',
-            smooth: true
-        }]
+            type: 'value',
+            show:true
+        }
+        // series: [{
+        //     name:'用户量',
+        //     data: [820, 932, 901, 934, 1290, 1330, 4200],
+        //     type: 'line',
+        //     smooth: true//是否平滑处理
+        // }]
     };
+    myChart1.showLoading();//数据加载完之前先显示一段简单的loading动画
 
+    $.ajax({
+        type : "get",//请求方式
+        async : true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        data:{},//请求参数(json)
+        url : "${pageContext.request.contextPath }/index/echarts",//请求参数
+        dataType : "json",
+        success : function(data) {
+            var names = [];     //类别数组（实际用来盛放X轴坐标值）
+            var nums = [];       //用户量数组（实际用来盛放Y坐标值）
+            //请求成功时执行该函数内容，result即为服务器返回的json对象
+                var obj = data.data;     //解析后台传来的json数据
+                for (var i = 0; i < data.data.length; i++) {
+                    nums.push(obj[i]);
+                }
+                myChart1.hideLoading(); //隐藏加载动画
+                myChart1.setOption({ //加载数据图表
+                    series : [ {
+                        // 根据名字对应到相应的系列
+                        name : '用户量',
+                        data : nums
+                    } ]
+                });
+        },
+        error : function(errorMsg) {
+            //请求失败时执行该函数
+            alert("图表请求数据失败!");
+            myChart.hideLoading();
+        }
+    });
 
     // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
+    // myChart1.setOption(option1);
+
 
     // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('main2'));
+    var myChart2 = echarts.init(document.getElementById('main2'));
 
     // 指定图表的配置项和数据
-    var option = {
+    var option2 = {
         tooltip : {
             trigger: 'axis',
             axisPointer: {
@@ -156,14 +189,14 @@
 
 
     // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
+    myChart2.setOption(option2);
 
 
     // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('main3'));
+    var myChart3 = echarts.init(document.getElementById('main3'));
 
     // 指定图表的配置项和数据
-    var option = {
+    var option3 = {
         tooltip : {
             trigger: 'item',
             formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -200,13 +233,13 @@
 
 
     // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
+    myChart3.setOption(option3);
 
     // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('main4'));
+    var myChart4 = echarts.init(document.getElementById('main4'));
 
     // 指定图表的配置项和数据
-    var option = {
+    var option4 = {
         tooltip : {
             formatter: "{a} <br/>{b} : {c}%"
         },
@@ -220,7 +253,7 @@
         ]
     };
     // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
+    myChart4.setOption(option4);
 </script>
 <script>
     var _hmt = _hmt || [];
