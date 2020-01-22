@@ -91,13 +91,13 @@
         yAxis: {
             type: 'value',
             show:true
-        }
-        // series: [{
-        //     name:'用户量',
-        //     data: [820, 932, 901, 934, 1290, 1330, 4200],
-        //     type: 'line',
-        //     smooth: true//是否平滑处理
-        // }]
+        },
+        series: [{
+            name:'用户量',
+            // data: [820, 932, 901, 934, 1290, 1330, 4200],
+            type: 'line',
+            smooth: true//是否平滑处理
+        }]
     };
     myChart1.showLoading();//数据加载完之前先显示一段简单的loading动画
 
@@ -111,16 +111,18 @@
             var names = [];     //类别数组（实际用来盛放X轴坐标值）
             var nums = [];       //用户量数组（实际用来盛放Y坐标值）
             //请求成功时执行该函数内容，result即为服务器返回的json对象
-                var obj = data.data;     //解析后台传来的json数据
-                for (var i = 0; i < data.data.length; i++) {
-                    nums.push(obj[i]);
-                }
+                var obj = data;     //解析后台传来的json数据
+            for (var i = 0; i < obj.length; i++) {
+                nums.push(obj[i]);
+            }
                 myChart1.hideLoading(); //隐藏加载动画
                 myChart1.setOption({ //加载数据图表
                     series : [ {
                         // 根据名字对应到相应的系列
-                        name : '用户量',
+                        // name : '用户量',
                         data : nums
+                        // type:'line',
+                        // smooth:true
                     } ]
                 });
         },
@@ -132,7 +134,7 @@
     });
 
     // 使用刚指定的配置项和数据显示图表。
-    // myChart1.setOption(option1);
+    myChart1.setOption(option1);
 
 
     // 基于准备好的dom，初始化echarts实例
